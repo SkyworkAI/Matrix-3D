@@ -57,7 +57,7 @@ from einops import rearrange
 
 try:
     from diffusers.models.autoencoders.vae import DecoderOutput
-except:
+except Exception:
     from diffusers.models.vae import DecoderOutput
 
 if is_torch_xla_available():

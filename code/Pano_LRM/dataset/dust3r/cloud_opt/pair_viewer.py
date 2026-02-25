@@ -59,7 +59,7 @@ class PairViewer (BasePCOptimizer):
 
                 R = cv2.Rodrigues(R)[0]  # world to cam
                 pose = inv(np.r_[np.c_[R, T], [(0, 0, 0, 1)]])  # cam to world
-            except:
+            except Exception:
                 pose = np.eye(4)
             rel_poses.append(torch.from_numpy(pose.astype(np.float32)))
 

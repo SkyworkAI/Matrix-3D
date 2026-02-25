@@ -61,7 +61,7 @@ class ConfiguredResampledShards(ResampledShards):
 
             group = get_data_parallel_group()
             print_rank0("Using megatron data parallel group.")
-        except:
+        except Exception:
             from sat.mpu import get_data_parallel_group
 
             try:

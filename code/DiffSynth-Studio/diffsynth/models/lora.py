@@ -116,7 +116,7 @@ class LoRAFromCivitai:
                             break
                     else:
                         return lora_prefix, model_resource
-                except:
+                except Exception:
                     pass
         return None
 

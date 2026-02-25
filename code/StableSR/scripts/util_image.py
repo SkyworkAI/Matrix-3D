@@ -325,7 +325,7 @@ def imread(path, chn='rgb', dtype='float32'):
                 im = np.stack((im, im, im), axis=2)
         elif chn.lower() == 'gray':
             assert im.ndim == 2
-    except:
+    except Exception:
         print(str(path))
 
     if dtype == 'float32':
