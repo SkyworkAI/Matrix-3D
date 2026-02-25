@@ -15,7 +15,7 @@ try:
     import xformers
     import xformers.ops
     XFORMERS_IS_AVAILBLE = True
-except:
+except Exception:
     XFORMERS_IS_AVAILBLE = False
 
 def calc_mean_std(feat, eps=1e-5):

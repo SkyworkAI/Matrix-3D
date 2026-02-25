@@ -804,7 +804,7 @@ def render_opencv_cam(
     )
     # try:
     #     screenspace_points.retain_grad()
-    # except:
+    # except Exception:
     #     pass
 
     viewpoint_camera = Camera(C2W=C2W, fxfycxcy=fxfycxcy, h=height, w=width)

@@ -69,7 +69,7 @@ class TextVideoDataset(torch.utils.data.Dataset):
                 video_file = self.path[data_id]
                 try:
                     data = self.load_video(video_file, training_shape_id)
-                except:
+                except Exception:
                     data = None
                 if data is not None:
                     break

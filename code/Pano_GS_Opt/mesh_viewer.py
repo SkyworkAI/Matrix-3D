@@ -13,7 +13,7 @@ def load_and_show_ply2(filepath):
     try:
         # Try loading as a point cloud first
         mesh = o3d.io.read_point_cloud(filepath)
-    except:
+    except Exception:
         # If that fails, try loading as a triangle mesh
         mesh = o3d.io.read_triangle_mesh(filepath)
         mesh.compute_vertex_normals()

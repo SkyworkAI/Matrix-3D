@@ -45,7 +45,7 @@ class i2pano:
                 prompt = prompt
             else:
                 prompt = self.Lamma_Video.extract_prompt(img_path,debug=True)
-        except:
+        except Exception:
             print("Lamma Video prompt failed")
             promt="a lot of trees"
         print(f"Lamma Video prompt {prompt}")

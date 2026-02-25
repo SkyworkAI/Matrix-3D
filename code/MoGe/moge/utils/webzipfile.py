@@ -123,6 +123,6 @@ class WebZipFile(ZipFile):
                 pwd = None
 
             return ZipExtFile(zef_file, mode, zinfo, pwd, True)
-        except:
+        except Exception:
             zef_file.close()
             raise
