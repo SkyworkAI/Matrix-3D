@@ -37,7 +37,7 @@ def _fmt_duration(secs):
     return f"{h:02d}h{m:02d}m{s:02d}s"
 
 
-def _sys_stats():a
+def _sys_stats():
     vm = psutil.virtual_memory()
     ram_used = vm.used / 1024**3
     ram_total = vm.total / 1024**3
