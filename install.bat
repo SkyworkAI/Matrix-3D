@@ -74,6 +74,11 @@ pip uninstall -y basicsr || goto :error
 pip install openai-clip || goto :error
 
 echo ✅ All dependencies installed successfully.
+
+echo ✅ Downloading model checkpoints...
+python code\download_checkpoints.py || goto :error
+
+echo ✅ All done.
 goto :eof
 
 :error
