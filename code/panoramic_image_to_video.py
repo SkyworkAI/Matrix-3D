@@ -360,7 +360,7 @@ def main(args):
 
     if not use_5b_model:
         #vid_path, mask_path,text,
-        tgt_resolution = (1440,720) if is_720p else (960,480)
+        tgt_resolution = (960,720) if is_720p else (960,480)
         #dset = TextVideoDataset(vid_path = os.path.join(condition_dir,"rendered_rgb.mp4"), mask_path = os.path.join(condition_dir,"rendered_mask.mp4"), text=prompt)
         # (self, vid_path, mask_path,text, max_num_frames=81, frame_interval=1, num_frames=81, height=720, width=1440, is_i2v=True):
         dset = TextVideoDataset(vid_path = os.path.join(condition_dir,"rendered_rgb.mp4"), mask_path = os.path.join(condition_dir,"rendered_mask.mp4"), text=prompt, height=tgt_resolution[1],width=tgt_resolution[0])
@@ -373,8 +373,8 @@ def main(args):
             prompt=prompt+" The video is of high quality, and the view is very clear. High quality, masterpiece, best quality, highres, ultra-detailed, fantastic.",
             negative_prompt="The video is not of a high quality, it has a low resolution. Distortion. strange artifacts.",
             cfg_scale=5.0,
-            num_frames=81,
-            num_inference_steps=50,
+            num_frames=161,
+            num_inference_steps=5,
             seed=seed, tiled=True,
             height=tgt_resolution[1],
             width=tgt_resolution[0],
@@ -397,7 +397,7 @@ def main(args):
         dset = VideoDataset(
             #base_path="/", metadata_path="/datasets_3d/zhongqi.yang/matrix3d_inference/dataset/metadata_1k.csv",
             base_path="/", metadata_path=None,
-            num_frames=81,
+            num_frames=161,
             time_division_factor=4, time_division_remainder=1,
             max_pixels=height*width, height=height, width=width,
             height_division_factor=16, width_division_factor=16,
@@ -416,12 +416,12 @@ def main(args):
             seed=120, tiled=True,
             height=height, width=width,
             input_image=cases["video"][0],
-            num_frames=81,
+            num_frames=161,
             cond_video = (cases["cond_video"]),
             cond_mask = (cases["cond_mask"]),
         )
-        # the original resolution of 5b model is actually [704,1408], in order to be unified with latter steps, we resize the output to [720,1440].
-        video = [img.resize((1440,720)) for img in video_ori]
+        # the original resolution of 5b model is actually [704,1408], in order to be unified with latter steps, we resize the output to [960,720].
+        video = [img.resize((960,720)) for img in video_ori]
 
     if dist.get_rank() == 0:
         generated_dir = os.path.join(case_dir,"generated")
