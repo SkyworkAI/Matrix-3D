@@ -13,7 +13,7 @@ def create_output_dir(base_path: str, prefix: str = "example") -> str:
     os.makedirs(base_path, exist_ok=True)
     max_num = 0
     for dirname in os.listdir(base_path):
-        match = re.match(f"{prefix}(\d+)", dirname)
+        match = re.match(f"{prefix}(\\d+)", dirname)
         if match:
             max_num = max(max_num, int(match.group(1)))
     new_dir = f"{prefix}{max_num + 1}"

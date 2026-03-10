@@ -3,6 +3,9 @@ import os
 # os.environ["HF_ENDPOINT"] = 'https://hf-mirror.com'
 from huggingface_hub import hf_hub_download, snapshot_download, login
 
+# Set HF_TOKEN environment variable before running this script, e.g.:
+# export HF_TOKEN=hf_...
+
 def download_ckpt(local_dir, repo_id, filename):
     os.makedirs(local_dir, exist_ok=True)
     local_path = os.path.join(local_dir, os.path.basename(filename))

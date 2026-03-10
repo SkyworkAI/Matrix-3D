@@ -20,7 +20,11 @@ def build_pano_gen_model(lora_path=None, device="cuda"):
 def build_pano_fill_model(lora_path=None, device="cuda:0"):
     if lora_path is None:
         lora_path = hf_hub_download(repo_id="LeoXie/WorldGen", filename=f"models--WorldGen-Flux-Lora/worldgen_img2scene.safetensors")
-    pipe = FluxFillPipeline.from_pretrained("black-forest-labs/FLUX.1-Fill-dev", torch_dtype=torch.bfloat16, device=device)
+    pipe = FluxFillPipeline.from_pretrained(
+        "black-forest-labs/FLUX.1-Fill-dev",
+        dtype=torch.bfloat16,
+        low_cpu_mem_usage=True,
+    )
     print(f"Loading LoRA weights from: {lora_path}")
     pipe.load_lora_weights(lora_path)
 
