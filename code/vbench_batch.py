@@ -10,6 +10,7 @@ import csv
 import json
 import os
 import random
+import glob as _glob
 import re
 import shutil
 import subprocess
@@ -36,7 +37,7 @@ def _fmt_duration(secs):
     return f"{h:02d}h{m:02d}m{s:02d}s"
 
 
-def _sys_stats():
+def _sys_stats():a
     vm = psutil.virtual_memory()
     ram_used = vm.used / 1024**3
     ram_total = vm.total / 1024**3
@@ -133,7 +134,9 @@ def main():
             print(f"[vbench] prompt {task_idx+1}/{len(prompts)}  sample {sample_idx+1}/{args.num_samples}  seed {seed}")
             print(f"[vbench] {caption[:70]}")
 
-            if os.path.exists(out_path):
+            existing = _glob.glob(os.path.join(out_dir, f"{_safe(caption)}-{sample_idx}-*.mp4"))
+            if existing:
+                out_path = existing[0]
                 print(f"[vbench] → SKIP (already exists)")
                 skipped += 1
                 done += 1
